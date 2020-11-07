@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="../bootstrap/dist/js/jquery.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        // function area(r) {
+        //     return 3.14*r*r;
+        // }
+        // alert(area(10))
+        //创建一个函数可以输出人的姓名
+        // function sayInfo(age, name) {
+        //     return "我叫" + name + ",今年" + age + "岁了";
+        // }
+        // var info = sayInfo(11, "xiaoming");
+        // document.write(info);
+        //参数多的时候建议封装成对象
+        var obj ={
+            name:"xiaoming",
+            age:11,
+            gender:"男"
+        };
+        // function say(obj) {
+        //     return "我叫" + obj.name +"性别"+obj.gender +",今年" + obj.age + "岁了";
+        // }
+        // document.write(say(obj));
+        /*
+        func(area(10)) 相当于使用函数的返回值 对象返回值
+        func（area） 相当于使用函数对象   对象本身
+         */
+        // (function(a,b){
+        //     alert('立即执行行数');
+        //     document.write(a,b)
+        // })(1,2);
+        //枚举对象属性
+       for (var n in obj){
+          console.log(n)
+           //获取属性值
+           console.log(obj[n]);
+       }
+
+
+    </script>
+</head>
+<body>
+<br>
+<h>函数对象</h>
+</body>
+</html>

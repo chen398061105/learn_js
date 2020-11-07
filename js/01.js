@@ -1,0 +1,1 @@
+document.write("01.js<br>")

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>添加删除记录练习</title>
+    <link rel="stylesheet" type="text/css" href="ex_2_style/css.css"/>
+    <script type="text/javascript">
+        //通用删除方法
+        function delA() {
+            var tr = this.parentNode.parentNode;//获取a ->td-> tr 的父节点
+            //获取要删除的员工名
+            // var name = tr.getElementsByTagName('td')[0].innerHTML;
+            var name = tr.children[0].innerHTML;
+            // 删除之前确认
+            var flag = confirm("确认要删除" + name + "吗？");
+            if (flag) {
+                tr.parentNode.removeChild(tr);//通过父节点自删
+            }
+            return false;//防止超链接取消跳转。或者<td><a href="javascript:;">Delete</a></td>
+        }
+
+        window.onload = function () {
+            /*
+             * 点击超链接以后，删除一个员工的信息
+             */
+            var allLink = document.getElementsByTagName("a");
+            for (var i = 0; i < allLink.length; i++) {
+                allLink[i].onclick = delA;
+            }
+
+            //添加新员工
+            var add = document.getElementById("addEmpButton");
+            add.onclick = function () {
+                var name = document.getElementById("empName").value;
+                var email = document.getElementById("email").value;
+                var salary = document.getElementById("salary").value;
+
+                //创建各个节点
+                var tr = document.createElement("tr");
+                tr.innerHTML =
+                    "<td>" + name + "</td>" +
+                    "<td>" + email + "</td>" +
+                    "<td>" + salary + "</td>" +
+                    "<td><a href='javascript:;'>Delete</a></td>";
+                //设置删除功能
+                var a = tr.getElementsByTagName("a")[0];
+                a.onclick = delA;
+                //获取table节点
+                var employeeTable = document.getElementById("employeeTable");
+                //获取tbody父节点 默认有
+                var tbody = employeeTable.getElementsByTagName("tbody")[0];
+                //tr 添加到tbody中
+                tbody.appendChild(tr);
+            };
+        };
+    </script>
+</head>
+<body>
+
+<table id="employeeTable">
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Salary</th>
+        <th>&nbsp;</th>
+    </tr>
+    <tr>
+        <td>Tom</td>
+        <td>tom@tom.com</td>
+        <td>5000</td>
+        <td><a href="javascript:;">Delete</a></td>
+    </tr>
+    <tr>
+        <td>Jerry</td>
+        <td>jerry@sohu.com</td>
+        <td>8000</td>
+        <td><a href="deleteEmp?id=002">Delete</a></td>
+    </tr>
+    <tr>
+        <td>Bob</td>
+        <td>bob@tom.com</td>
+        <td>10000</td>
+        <td><a href="deleteEmp?id=003">Delete</a></td>
+    </tr>
+</table>
+
+<div id="formDiv">
+
+    <h4>添加新员工</h4>
+
+    <table>
+        <tr>
+            <td class="word">name:</td>
+            <td class="inp">
+                <input type="text" name="empName" id="empName"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="word">email:</td>
+            <td class="inp">
+                <input type="text" name="email" id="email"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="word">salary:</td>
+            <td class="inp">
+                <input type="text" name="salary" id="salary"/>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <button id="addEmpButton" value="abc">
+                    Submit
+                </button>
+            </td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

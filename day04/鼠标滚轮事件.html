@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: #a94442;
+        }
+    </style>
+    <script>
+        //鼠标滚轮向上下时候。box变大变小
+        window.onload = function () {
+          var box = document.getElementById("box");
+          //onmousewheel 鼠标滚轮滚动事件，火狐不兼容
+          box.onmousewheel = function (event) {
+              //上滚 event.detail< 0 火狐
+              event = event || window.event;
+             if (event.wheelDelta> 0 || event.detail< 0 ){
+                 box.style.height = box.clientHeight - 10+"px";
+             } else {
+                 box.style.height = box.clientHeight + 10+"px";
+             }
+              //当浏览器有滚动条时候回有随之滚动需要取消
+              return false;
+          };
+        };
+    </script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

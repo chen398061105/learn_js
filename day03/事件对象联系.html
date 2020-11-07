@@ -1,0 +1,53 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Insert title here</title>
+<style type="text/css">
+	* {
+		margin: 0;
+		padding: 0;
+	}
+	#box {
+		border: 1px solid black;
+		width: 50px;
+		height: 50px ;
+		margin: auto;
+		padding: 10px;
+		margin-bottom: 10px;
+		/*top: 0;*/
+		/*left: 0;*/
+		/*right: 0;*/
+		/*bottom: 0;
+		水平居中*/
+		background-color: #2aabd2;
+		position: absolute;
+	}
+
+
+</style>
+<script type="text/javascript">
+
+	window.onload = function(){
+		var box = document.getElementById("box");
+		document.onmousemove =function (event) {
+			event = event || window.event;//防止兼容ie8
+			//clienXY是针对当前可是页面，如果是整个画面则用pageX 但是ie8也不兼容
+			var left = event.clientX;
+			var top = event.clientY;
+			//获取滚动条的距离,兼容，防止宽高过长的问题
+			var st = document.body.scrollTop || document.scrollingElement.scrollTop;//垂直
+			var sl = document.body.scrollLeft || document.scrollingElement.scrollLeft;//横
+
+			box.style.left = left +sl+ "px";
+			box.style.top = top +st+"px";
+		};
+	};
+
+</script>
+</head>
+<body style="height: 1000px;width: 2000px">
+<!--<body>-->
+	<div id="box"></div>
+</body>
+</html>

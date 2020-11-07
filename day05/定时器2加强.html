@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: #a94442;
+            position: absolute;
+            /*防止ie 显示auto*/
+            left: 0;
+        }
+    </style>
+    <script>
+        /*
+			 * 定义一个函数，用来获取指定元素的当前的样式
+			 * 参数：
+			 * 		obj 要获取样式的元素
+			 * 		name 要获取的样式名
+			 */
+        function getStyle(obj, name) {
+            if (window.getComputedStyle) {
+                //正常浏览器的方式，具有getComputedStyle()方法
+                return getComputedStyle(obj, null)[name];
+            } else {
+                //IE8的方式，没有getComputedStyle()方法
+                return obj.currentStyle[name];
+            }
+        }
+
+        //左右移动
+        /**
+         *
+         * @param obj 要执行的对象
+         * @param target 目标
+         * @param speed 速度  + 向右 - 向左
+         */
+        var timeOut;
+
+        function move(obj, target, speed) {
+            //点击后移动
+            clearInterval(timeOut);//再次点击前要关闭
+            //只判断speed的正负值，默认正值
+            //获取当前的坐标位置
+            var current = parseInt(getStyle(obj,'left'));
+            if (current > target){// 当前位置小于目标位置则为负值
+                speed = -speed;
+            }
+            timeOut = setInterval(function () {
+                var oldValue = parseInt(getStyle(obj, 'left'));
+                var newValue = oldValue + speed;
+                //当向左移动 newValue < target
+                //当向右移动 newValue > target
+                if ((speed < 0 && newValue < target) || speed > 0 && newValue > target) {
+                    newValue = target;
+                }
+                //最大点给最新值
+                obj.style.left = newValue + 'px';
+                //设置到线终点停止
+                if (newValue == target) {
+                    clearInterval(timeOut);
+                }
+            }, 30);
+        }
+
+        window.onload = function () {
+            var box = document.getElementById('box');
+            var right = document.getElementById('right');
+            var left = document.getElementById('left');
+            right.onclick = function () {
+                move(box, 450, 10);
+            };
+            left.onclick = function () {
+                move(box, 0, 10);
+            };
+
+        };
+    </script>
+</head>
+<body>
+
+<button id="right" type="button">点击向右移动</button>
+<button id="left" type="button">点击向左移动</button>
+<div style="width: 0; height: 500px; border-left:1px black solid; position: absolute; left: 500px;top:0;"></div>
+<div id="box"></div>
+</body>
+</html>

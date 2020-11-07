@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 500px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: greenyellow;
+            /*设置文本居中*/
+            text-align: center;
+        }
+    </style>
+
+    <script type="text/javascript">
+        window.onload = function () {
+
+            var imgArr = ["img/1.jpg", "img/2.jpg", "img/3.jpg", "img/4.jpg", "img/5.jpg"];
+            var img = document.getElementsByTagName("img")[0];
+            var start = document.getElementById("start");
+            var stop = document.getElementById("stop");
+
+            var timeOut;
+            start.onclick = function () {
+                //开启之前关闭当前其他元素的定时器
+                clearInterval(timeOut);
+                var num = 0;
+                //setInterval每隔一段时间执行一次
+                //setTimeout() 延时之后调用一次
+                 timeOut = setInterval(function () {
+                    num++;
+                    // if (num >=imgArr.length){
+                    //     // clearInterval(setTime);
+                    //     num =0;
+                    // }
+                    num %= imgArr.length;//和上面一样，1%5 =1
+                    img.src = imgArr[num];
+                }, 1000);
+            };
+            stop.onclick = function () {
+                clearInterval(timeOut);//可以接受任意参数，如果有效则执行，如果无效则不动
+            }
+
+        };
+
+    </script>
+</head>
+<body>
+<div id="outer">
+
+    <p id="info"></p>
+
+    <img src="img/1.jpg" alt="冰棍"/>
+
+    <button id="start">开始转</button>
+    <button id="stop">停止</button>
+
+</div>
+</body>
+</html>

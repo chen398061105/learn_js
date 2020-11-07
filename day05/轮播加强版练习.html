@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style type="text/css">
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer {
+            width: 520px;
+            height: 330px;
+            margin: 50px auto;
+            padding: 10px 0;
+            background-color: greenyellow;
+            /*设置文本居中*/
+            text-align: center;
+            position: relative;
+            /*裁剪不要的图片*/
+            overflow: hidden;
+        }
+
+        #imgList {
+            list-style: none;
+            /*给子元素开启绝对定位就要给父元素开启相对定位*/
+            position: absolute;
+            /*    设置偏移量*/
+            /*left: -520px;*/
+        }
+
+        #imgList li {
+            float: left;
+            margin: 0 10px;
+        }
+
+        /*设置导航按钮*/
+        #nav {
+            position: absolute;
+            bottom: 10px;
+        }
+
+        #nav a {
+            float: left;
+            width: 15px;
+            height: 15px;
+            background-color: #b9def0;
+            margin: 0 5px;
+            opacity: 0.5;
+            /*ie8*/
+            filter: alpha(opacity=50);
+        }
+
+        /*设置鼠标点击div效果*/
+        #nav a:hover {
+            background-color: deepskyblue;
+        }
+
+    </style>
+    <script src="../js/move.js"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            //设置图片宽度
+            var imgList = document.getElementById("imgList");
+            var imgArr = document.getElementsByTagName("img");
+            imgList.style.width = 520 * imgArr.length + "px";
+
+            //设置导航按钮居中
+            var navDiv = document.getElementById('nav');
+            var outerDiv = document.getElementById('outer');
+            navDiv.style.left = (outerDiv.offsetWidth - navDiv.offsetWidth) / 2 + "px";
+            //设置默认导航的第一个颜色
+            var index = 0;
+            var allA = document.getElementsByTagName('a');
+            allA[index].style.backgroundColor = "deepskyblue";
+            var timeOut;
+            //点击超链接显示各自画面
+            for (var i = 0; i < allA.length; i++) {
+                //把i给每个对象里面
+                allA[i].num = i;
+                allA[i].onclick = function () {
+                    //点击移动目的的画面时候要关闭自动轮播
+                    clearInterval(timeOut);
+                    //获取点击超链接的索引,并将其设置为index
+                    index = this.num;
+                    //切换图片
+                    //设置选中的a
+                    setA();
+                    //使用move函数来切换图片
+                    move(imgList, "left", -520 * index, 20,function () {
+                        //执行
+                       atuoImage();
+                    });
+                };
+            }
+
+            //自动轮播
+            atuoImage();
+
+            //创建一个方法用来设置选中的a
+            function setA() {
+                //判断当前索引是否是最后一张。如果是则设置成 0
+                if (index >= imgArr.length - 1) {
+                    index = 0;
+                    //此时显示最后一张 ，最后一张和第一张一样，通过css一下子切换第一张
+                    imgList.style.left = 0;
+                }
+
+                //遍历所有a，并将它们的背景颜色设置为红色
+                for (var i = 0; i < allA.length; i++) {
+                    allA[i].style.backgroundColor = "";
+                }
+                //将选中的a设置为黑色
+                allA[index].style.backgroundColor = "deepskyblue";
+            }
+
+            //设置自动轮播
+            function atuoImage() {
+                timeOut = setInterval(function () {
+                    index++;
+                    index %= imgArr.length;
+                    move(imgList, 'left', -520 * index, 20, function () {
+                        setA();
+                    });
+                }, 2000);
+            }
+
+
+        };
+
+    </script>
+</head>
+<body>
+<div id="outer">
+    <ul id="imgList">
+        <li><img src="../img/1.jpg" alt="">
+        <li>
+        <li><img src="../img/2.jpg" alt=""></li>
+        <li><img src="../img/3.jpg" alt=""></li>
+        <li><img src="../img/4.jpg" alt=""></li>
+        <li><img src="../img/5.jpg" alt=""></li>
+        <li><img src="../img/1.jpg" alt=""></li>
+    </ul>
+    <div id="nav">
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+        <a href="javascript:;"></a>
+    </div>
+</div>
+</body>
+</html>

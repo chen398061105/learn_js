@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload = function () {
+            // var body = document.body;
+            // var html = document.documentElement;
+            // console.log(body);
+            // console.log(html);
+            // var div = document.querySelector(".box1 p")
+            // //可以直接调用css选择器,如果选择器重复 只会返回第一个
+            // alert(div.innerHTML);
+            var div2 = document.querySelectorAll(".box1")
+            // alert(div2); 返回的是数组集合
+            alert(div2[1].innerHTML);
+        }
+
+    </script>
+</head>
+<body>
+
+<div class="box1">
+    <p> 我是第一个div</p>
+</div>
+<div class="box1">
+    <p> 我是第二个div</p>
+</div>
+</body>
+</html>

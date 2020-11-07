@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        function bind(obj,eventStr,callback){
+            if (addEventListener){
+                //通用浏览器，this 是obj
+                obj.addEventListener(eventStr,callback,false);
+            }else {
+                //ie8 this 是window
+                obj.attachEvent("on"+eventStr,function () {
+                    //在回调函数里面调匿名函数，从浏览器控制变成我们控制，就可以设置对象了
+                    callback.call(obj);
+                });//事件会倒叙
+            }
+        }
+        window.onload = function () {
+            // var links = document.getElementsByTagName("a");
+            // var ul = document.getElementById("uid");
+            // var btn = document.getElementById('btn');
+            //
+            // // for (var i = 0; i < links.length; i++) {
+            // //     links[i].onclick = function () {
+            // //     };
+            // // } 不推荐，因为新加的链接要重新绑定
+            // //推荐绑定一次就行，为父元素绑定一个事件元素,事件的委派，则后代元素都会触发祖先元素
+            // ul.onclick = function () {
+            //     alert(1);
+            // };
+            //
+            //
+            // btn.onclick = function () {
+            //     var li = document.createElement("li");
+            //     li.innerHTML = "<a href='JavaScript:;'>新加超链接</a>";
+            //     ul.appendChild(li);
+            // };
+
+            var btn1 = document.getElementById("btn1");
+            bind(btn1,"click",function () {
+               alert(1);
+            });
+            bind(btn1,"click",function () {
+                alert(2);
+            });
+                //为btn绑定多个事件 addEventListener("事件字符串不要on",回调函数,是否在捕获阶段触发，一般false)
+                // btn1.addEventListener("click",function () {
+                //     alert(1);
+                // },false);
+                //
+                // btn1.addEventListener("click",function () {
+                //     alert(2);
+                // },false);
+                //     btn1.attachEvent("onclick",function () {
+                //         alert(1);
+                //     },false);
+                //
+                //     btn1.attachEvent("onclick",function () {
+                //         alert(2);
+                //     },false);
+
+        };
+    </script>
+</head>
+<body>
+<!--<button id="btn">添加超链接</button>-->
+<!--<ul id="uid">-->
+<!--    <li><a href="JavaScript:;">链接1</a></li>-->
+<!--    <li><a href="JavaScript:;">链接2</a></li>-->
+<!--    <li><a href="JavaScript:;">链接3</a></li>-->
+<!--</ul>-->
+<button id="btn1">点我一下弹内容</button>
+</body>
+</html>

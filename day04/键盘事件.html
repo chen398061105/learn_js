@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        //鼠标滚轮向上下时候。box变大变小
+        window.onload = function () {
+            //松开
+            // document.onkeyup = function () {
+            //     alert(0);
+            // };
+            //按下
+            /*
+            altKey ctrlKey shiftKey
+             */
+            var input = document.getElementById("name");
+            input.onkeydown = function (event) {
+                event = event || window.event;
+                console.log(event.keyCode);
+                // 想让文本框中不输入内容return false。
+                // 例数字 不显示出来
+                if (event.keyCode >= 48 && event.keyCode <= 57) {
+                    alert("禁止输入数字！");
+                    return false;
+                }
+                if (event.keyCode == 13) {
+                    alert('enter');
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+<input id="name" name="name" value=""/>
+</body>
+</html>

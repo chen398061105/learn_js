@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        /*
+            window 浏览器窗口，全局对象
+            navigator 当前浏览器的信息，识别不同的浏览器
+            location 当前浏览器的地址栏信息，跳转页面等
+            history 浏览器历史记录，只能操作向前向后的网站，当次访问有效
+            screen 用户屏幕的相关信息 *基本移动端用得少
+         */
+        // alert(navigator.appName);
+        // var ua = navigator.userAgent
+        // // alert(ua);//判断浏览器信息
+        // if(/firebox/i.test(ua)){
+        //     alert('houhu');
+        // }else if (/chrome/i.test(ua)){
+        //     alert('chrome');
+        // } else if (/msie/i.test(ua)){
+        //     //版本 8910   11不支持
+        // }
+        // //ie11 时候通过特殊对象来判断  ActiveXObject独有
+        // if("ActiveXObject" in window){
+        //     //检查有关对象里面是否有某属性
+        // }
+        window.onload =function () {
+          var btn = document.getElementById('btn');
+          btn.onclick =function () {
+            // location = './事件的传播.html';
+            location.reload(true);//加true会强制刷新缓存 刷新
+              //replace 替换地址，不会生成历史记录
+          };
+        };
+    </script>
+</head>
+<body>
+<a href="JavaScript:history.go(1);">点我跳转</a>
+<button type="button" id="btn">点我</button>
+<input type="text">
+</body>
+</html>

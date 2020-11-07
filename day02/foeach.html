@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        // var arr = ["孙悟空","猪八戒","唐僧","沙和尚"]
+        // for (var i = 0; i < arr.length; i++) {
+        //     document.write(arr[i]+"<br>");
+        // }
+        // for (var i = 0; i <arr.length ; i++) {
+        //     if (arr[i].age >= 18){
+        //         arr.push(arr[i]);
+        //     }
+        // }
+        // arr.forEach(function (value) {
+        //     //forEach使用时候要用回调函数，ie8 不兼容
+        //     // value值就是arr里面的值，index索引，obj当前对象，function（value，index，obj）
+        //     document.write(value+"<br>");
+        // });
+        // document.write(arr.slice(-11));//从0索引开始截取一个     splice删除指定元素
+        var arr = [1,2,3,4,4,5,1,1,2,3]
+        for (var i = 0; i <arr.length ; i++) {
+            for (var j = i+1; j <arr.length ; j++) {
+                if (arr[i]==arr[j]){
+                    arr.splice(j,1);
+                    j--
+                }
+            }
+
+        }
+        document.write(arr)
+    </script>
+</head>
+<body>
+
+</body>
+</html>

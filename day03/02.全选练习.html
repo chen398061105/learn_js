@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>全选练习</title>
+    <script type="text/javascript">
+
+        window.onload = function () {
+            function myClick(strBtn, fun) {
+                var btn = document.getElementById(strBtn);
+                btn.onclick = fun;
+            }
+
+            //四个复选框
+            var names = document.getElementsByName("items");
+            //全选全不选
+            var checkedAllBox = document.getElementById("checkedAllBox");
+
+            myClick("checkedAllBtn", function () {
+                for (var i = 0; i < names.length; i++) {
+                    names[i].checked = true; //checked 为true时候设置为选中
+                }
+                checkedAllBox.checked = true;
+            });
+
+            myClick("checkedNoBtn", function () {
+
+                for (var i = 0; i < names.length; i++) {
+                    names[i].checked = false; //
+                }
+                checkedAllBox.checked = false;
+            });
+
+            myClick("checkedRevBtn", function () {
+                checkedAllBox.checked = true;
+                for (var i = 0; i < names.length; i++) {
+                    names[i].checked = !names[i].checked;
+                    //反选
+                    if (!names[i].checked) {
+                        checkedAllBox.checked = false;
+                    }
+                }
+            });
+
+            myClick("sendBtn", function () {
+                for (var i = 0; i < names.length; i++) {
+                    if (names[i].checked) {
+                        alert(names[i].value);
+                    }
+                }
+            });
+            //全选/全不选
+            myClick("checkedAllBox", function () {
+                for (var i = 0; i < names.length; i++) {
+                    names[i].checked = this.checked; //
+                }
+            });
+
+            //如果itmes全选中则全选/全不选状态变化
+            for (var i = 0; i < names.length; i++) {
+                names[i].onclick = function () {
+                    checkedAllBox.checked = true;
+                    for (var j = 0; j < names.length; j++) {
+                        //只要有一个不是选中的则全选/反选按钮不选中，直接跳出程序
+                        if (!names[j].checked) {
+                            checkedAllBox.checked = false;
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+
+    </script>
+</head>
+<body>
+
+<form method="post" action="">
+    你爱好的运动是？<input type="checkbox" id="checkedAllBox"/>全选/全不选
+
+    <br/>
+    <input type="checkbox" name="items" value="足球"/>足球
+    <input type="checkbox" name="items" value="篮球"/>篮球
+    <input type="checkbox" name="items" value="羽毛球"/>羽毛球
+    <input type="checkbox" name="items" value="乒乓球"/>乒乓球
+    <br/>
+    <input type="button" id="checkedAllBtn" value="全　选"/>
+    <input type="button" id="checkedNoBtn" value="全不选"/>
+    <input type="button" id="checkedRevBtn" value="反　选"/>
+    <input type="button" id="sendBtn" value="提　交"/>
+</form>
+</body>
+</html>

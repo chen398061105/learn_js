@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+
+        #box {
+            margin-top: 10px;
+            width: 50px;
+            height: 50px;
+            background-color: #a94442;
+            position: absolute;
+            /*防止ie 显示auto*/
+            left: 0;
+        }
+        #box2 {
+            width: 50px;
+            height: 50px;
+            background-color: #a94442;
+            position: absolute;
+            /*防止ie 显示auto*/
+            left: 0;
+            top: 100px;
+        }
+        #box3 {
+            width: 50px;
+            height: 50px;
+            background-color: greenyellow;
+            position: absolute;
+            /*防止ie 显示auto*/
+            left: 0;
+            top: 170px;
+        }
+    </style>
+    <script src="../js/move.js"></script>
+    <script>
+        window.onload = function () {
+            //1号选手 box
+            var box = document.getElementById('box');
+            var right = document.getElementById('right');
+            var left = document.getElementById('left');
+            right.onclick = function () {
+                move(box,"left", 500, 10);
+            };
+            left.onclick = function () {
+                move(box, "left",0, 10);
+            };
+            // 2号选手 box2
+            var box2 =document.getElementById('box2');
+            var box2Right = document.getElementById('box2Right');
+            box2Right.onclick =function () {
+                move(box2,"left" ,500, 10);
+            };
+
+            // 测试按钮
+            var box3 =document.getElementById('box3');
+            var btn = document.getElementById('test');
+            btn.onclick =function () {
+                move(box3,"left",500, 10,function () {
+                    move(box3,"top",500,10,function () {
+                        alert("over");//加一个回调函数可以实现连续功能
+                    });
+                });
+                // move(box3,"top",500, 10);
+                // move(box3,"width",500, 10);
+                // move(box3,"height",500, 10);
+            };
+
+        };
+    </script>
+</head>
+<body>
+
+<button id="res"  onclick="javascript:location.reload();">重新开始</button>
+<button id="right" type="button">1号向右移动</button>
+<button id="left" type="button">1号向左移动</button>
+<button id="box2Right" type="button">2号向左移动</button>
+<button id="test" type="button">测试样按钮</button>
+
+<div style="width: 0; height: 500px; border-left:1px black solid; position: absolute; left: 500px;top:0;"></div>
+<div id="box">1号</div>
+<div id="box2">2号</div>
+<div id="box3">test号</div>
+</body>
+</html>

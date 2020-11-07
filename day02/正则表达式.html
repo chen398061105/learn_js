@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        //var 变量 = new RegExp（正则表达式，匹配模式）
+
+        // var reg = new RegExp("a",'i'); //较灵活
+        //字面量方法
+      /*  var pattern = /[a-z]/g;
+        var str = "1a2b3d4c";
+        // var result = pattern.test(str);
+        var result = str.split(pattern);
+        // document.write((result.toString()).slice(0,-1) );
+        result = str.match(/[a-z]/gi);
+        // result = str.replace(pattern,'-')
+        document.write(result);//返回的是数组
+*/
+      var reg = /[\d]/;
+      var str = "111";
+      console.log(str.length);
+      console.log(str.trim().length);// ^\s*|\s*$
+      document.write(reg.test(str));
+
+    </script>
+</head>
+<body>
+</body>
+</html>

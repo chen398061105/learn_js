@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script type="text/javascript">
+        //三个包装类，可以吧基本引用数据转为对象
+        // var num = new Number(3);//数据类型转换对象
+        // var str = new String(3);//字符串类型转换对象
+        // document.write(typeof str);
+        var str = "hello";
+        // document.write(str[1]);
+        var result = str.charAt(0);//坐标索引
+        result =str.indexOf('e',0);//返回首次出现的索引，如果找不到则返回-1，第二个参数可以指定开始查找位置
+           document.write(result);
+           // str.substring(1)和str.slice()基本一样，但是substring不能接受负数 包含开始不包含结束
+        //substr(1,2) 截取开始的位置，截取长度
+        //split将字符串拆分数组
+        var str1 = "a,b,c,d";
+        document.write(str1.split(','))
+    </script>
+</head>
+<body>
+
+</body>
+</html>

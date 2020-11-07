@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css"
+          integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <script src="../bootstrap/dist/js/jquery.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+        function Person(name, age) {
+            //构造函数和普通函数一样 建议 构造函数名字大写
+            this.name = name;
+            this.age = age;
+            this.sayName = fun;
+        }
+        //全局函数，作用域不安全，引出对应方法：原型，每一个函数都有唯一的prototype
+        function fun() {
+            alert("hello" + this.name + this.age);
+        }
+        // alert(fun.prototype);
+
+        var per = new Person("xiaoming", 12);//构造函数
+        per.sayName();
+
+
+    </script>
+</head>
+<body>
+函数里面的变量，就近原则，如果想直接访问全局函数，直接用Window.var
+</body>
+</html>

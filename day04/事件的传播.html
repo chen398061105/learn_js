@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box1 {
+            width: 300px;
+            height: 300px;
+            background-color: #2aabd2;
+        }
+
+        #box2 {
+            width: 200px;
+            height: 200px;
+            background-color: greenyellow;
+        }
+
+        #box3 {
+            width: 150px;
+            height: 150px;
+            background-color: #a94442;
+        }
+    </style>
+</head>
+<script>
+    function bind(obj, eventStr, callback) {
+        if (addEventListener) {
+            //通用浏览器，this 是obj
+            obj.addEventListener(eventStr, callback, false);
+        } else {
+            //ie8 this 是window
+            obj.attachEvent("on" + eventStr, function () {
+                //在回调函数里面调匿名函数，从浏览器控制变成我们控制，就可以设置对象了
+                callback.call(obj);
+            });//事件会倒叙
+        }
+    }
+
+    window.onload = function () {
+        var box1 = document.getElementById("box1");
+        var box2 = document.getElementById("box2");
+        var box3 = document.getElementById("box3");
+        bind(box1, "click", function () {
+            alert("我是box1");
+        });
+        bind(box2, "click", function () {
+            alert("我是box2");
+        });
+        bind(box3, "click", function () {
+            alert("我是box3");
+        });
+    };
+</script>
+<body>
+<div id="box1">box1
+    <div id="box2">box2
+        <div id="box3">box3</div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .b1{
+            width: 100px;
+            height: 100px;
+            background-color: #a94442;
+        }
+        .b2{
+            width: 200px;
+            /*height: 200px;*/
+            background-color: greenyellow;
+        }
+    </style>
+    <script src="../js/addCss.js"></script>
+    <script>
+        window.onload =function () {
+          var btn = document.getElementById("btn1");
+          var box = document.getElementById("box");
+          btn.onclick =function () {
+              //通过style 来修改样式，，每修改一次浏览器需要重新渲染一次，这样不方便，不建议大量使用
+            // box.style.backgroundColor = 'red';
+              //通过修css的样式的名 来一次性修改，只需要渲染一次
+              // box.className = "b2";
+              // box.className += " b2"; //如果是在原有基础上追加的话，+= 注意后面名字需要空格
+              // alert(hasClass(box,"b2"))
+
+              // addClass(box,"b2");
+              // remove(box,"b2");
+              toggleClass(box,"b2");
+          };
+        };
+    </script>
+</head>
+<body>
+<button id="btn1">点击修改样式</button><br><br>
+<div id="box" class="b1"></div>
+</body>
+</html>

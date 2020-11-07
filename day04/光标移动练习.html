@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: #a94442;
+            position: absolute;
+        }
+    </style>
+    <script>
+        //鼠标滚轮向上下时候。box变大变小
+        window.onload = function () {
+         var box = document.getElementById("box");
+         document.onkeydown = function (event) {
+             event =event||window.event;
+             //移动速度
+             var speed = 10;
+             //如果按住ctrl 加速
+             if (event.ctrlKey){
+                 speed =50;
+             }
+             // 37左 38上 39右 40下
+             switch (event.keyCode) {
+                 case 37:
+                     box.style.left = box.offsetLeft - speed +"px";
+                     break;
+                 case 39:
+                     box.style.left = box.offsetLeft + speed +"px";
+                     break;
+                 case 38:
+                     box.style.top = box.offsetTop - speed +"px";
+                     break;
+                 case 40:
+                     box.style.top = box.offsetTop + speed +"px";
+                     break;
+             }
+         };
+        };
+    </script>
+</head>
+<body>
+<div id="box"></div>
+</body>
+</html>

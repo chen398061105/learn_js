@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #info {
+            width: 100px;
+            height: 400px;
+            background-color: #2aabd2;
+            overflow: auto;
+        }
+    </style>
+    <script>
+        window.onload = function () {
+            // var box = document.getElementById("box");
+            // var btn = document.getElementById("btn");
+            // btn.onclick = function () {
+            //     //通过js修改内联样式
+            //     box.style.backgroundColor="red";
+            //     box.style.width="200px";
+            // };
+
+            //下拉到底后可以点击 onscroll该事件会在滚动条时候触发
+
+            var info = document.getElementById("info");
+            var input = document.getElementsByTagName("input");
+            info.onscroll = function () {
+                //检查滚动条是否到底
+                if (info.scrollHeight - info.scrollTop == info.clientHeight){
+                    input[0].disabled=false;//true为禁用
+                    input[1].disabled=false;
+                }
+            };
+        };
+    </script>
+</head>
+<body>
+<h3>欢迎注册！</h3>
+<p id ="info">
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+    注意内容，请阅读！
+</p>
+<!--disabled添加后不能点击-->
+<input type="checkbox" disabled="disabled"/>同意
+<input type="submit"value="注册" disabled="disabled"/>
+</body>
+
+</html>

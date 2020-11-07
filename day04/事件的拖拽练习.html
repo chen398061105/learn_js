@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: #a94442;
+            position: absolute;
+        }
+
+        #box2 {
+            width: 50px;
+            height: 50px;
+            background-color: #b9def0;
+            position: absolute;
+
+            left: 200px;
+            top: 200px;
+        }
+    </style>
+</head>
+<script>
+    function drag(obj) {
+        // 拖拽流程 点击拖拽 ->按住拖拽 ->离开拖拽
+        obj.onmousedown = function (event) {
+            // * setCapture()
+            // * 	- 只有IE支持，但是在火狐中调用时不会报错，
+            // * 		而如果使用chrome调用，会报错
+            obj.setCapture && obj.setCapture();
+            event = event || window.event;
+            //设置鼠标点击位置
+            //鼠标.clientX - 元素.offsetLeft
+            // 鼠标.clientY - 元素.offsetTop
+            var ol = event.clientX - obj.offsetLeft;
+            var ot = event.clientY - obj.offsetTop;
+
+            //按住拖拽
+            document.onmousemove = function (event) {
+                event = event || window.event;
+                //获取鼠标坐标,移动
+                var left = event.clientX - ol;
+                var top = event.clientY - ot;
+
+                obj.style.left = left + "px";
+                obj.style.top = top + "px";
+            };
+            // 离开拖拽,取消move事件，如果有障碍物时候就不能停，改document绑定
+            document.onmouseup = function () {
+                document.onmousemove = null;
+                document.onmouseup = null;
+                obj.releaseCapture && obj.releaseCapture();
+            };
+            //拖拽网页内容是，浏览器会默认去搜索，会导致拖拽功能失败
+            //取消该功能 return false  ie8无效
+            return false;
+        }
+    }
+
+    window.onload = function () {
+        var box = document.getElementById("box");
+        var box2 = document.getElementById("box2");
+        drag(box);
+        drag(box2);
+
+    };
+
+
+</script>
+<body>
+<div id="box"></div>
+<div id="box2">障碍物</div>
+</body>
+</html>

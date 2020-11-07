@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #box {
+            width: 50px;
+            height: 50px;
+            background-color: #a94442;
+            position: absolute;
+            /*防止ie 显示auto*/
+            left: 0;
+        }
+    </style>
+    <script>
+        /*
+			 * 定义一个函数，用来获取指定元素的当前的样式
+			 * 参数：
+			 * 		obj 要获取样式的元素
+			 * 		name 要获取的样式名
+			 */
+        function getStyle(obj , name){
+            if(window.getComputedStyle){
+                //正常浏览器的方式，具有getComputedStyle()方法
+                return getComputedStyle(obj , null)[name];
+            }else{
+                //IE8的方式，没有getComputedStyle()方法
+                return obj.currentStyle[name];
+            }
+        }
+        window.onload =function () {
+          var box = document.getElementById('box');
+          var btn = document.getElementById('btn');
+          //点击后移动
+            var timeOut;
+            btn.onclick =function () {
+                clearInterval(timeOut);//再次点击前要关闭
+               timeOut=setInterval(function () {
+                    var oldValue = parseInt(getStyle(box,'left'));
+                    var newValue = oldValue+10;
+                    //目标点到了时候 设置为最大点
+                    if (newValue >500){
+                        newValue =500;
+                    }
+                    //最大点给最新值
+                    box.style.left = newValue+'px';
+                    //设置到线终点停止
+                    if (newValue ==500){
+                        clearInterval(timeOut);
+                    }
+                },30);
+          };
+        };
+    </script>
+</head>
+<body>
+
+<button id="btn" type="button">点击向右移动</button>
+<div style="width: 0; height: 500px; border-left:1px black solid; position: absolute; left: 500px;top:0;"></div>
+<div id="box"></div>
+</body>
+</html>

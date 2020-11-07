@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script>
+        window.onload =function () {
+            var count = document.getElementById("count");
+            //设置定时调用参数1 回调函数，参数2 时间
+           var num = 3;
+            var setTime = setInterval(function () {
+               count.innerHTML=num--;
+               if (num <-1){
+                   clearInterval(setTime);
+                   count.innerHTML="时间到";
+               }
+           },1000);
+        };
+    </script>
+</head>
+<body>
+<h1>定时调用</h1>
+<h2 id="count"></h2>
+</body>
+</html>
